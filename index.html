@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danielle Regis — Deployment Strategist</title>
+  <meta name="description" content="Danielle Regis is a Deployment Strategist at Palantir and was the CIA's first dedicated AI policy officer, working at the intersection of technology, people, and culture where AI actually gets adopted.">
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Danielle Regis">
+  <meta property="og:description" content="Technology doesn't win because it's good. It wins when people and culture are ready to trust it.">
+  <!-- TODO: add an OG image once available -->
+  <!-- <meta property="og:image" content="https://danielleregis.com/images/og.jpg"> -->
+  <meta property="og:url" content="https://danielleregis.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- TODO: add a favicon -->
+  <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml"> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,500;1,6..96,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===================== THEME TOKENS ===================== */
+    :root {
+      --accent: #C6FF2E;           /* acid green (default). Alt: #1B4DFF electric blue, #C9A227 gold */
+      --max-w: 1320px;
+      --gutter: clamp(20px, 5vw, 72px);
+      --section-pad: clamp(72px, 11vh, 150px);
+      --nav-h: 64px;
+      --ease: cubic-bezier(.2, .7, .2, 1);
+    }
+    [data-theme="dark"] {
+      --bg: #0A0A0B;
+      --fg: #F4F3F0;
+      --muted: rgba(244, 243, 240, 0.56);
+      --muted-2: rgba(244, 243, 240, 0.62);
+      --faint: rgba(244, 243, 240, 0.40);
+      --hairline: rgba(244, 243, 240, 0.14);
+      --navbg: rgba(10, 10, 11, 0.72);
+    }
+    [data-theme="bright"] {
+      --bg: #F5F4F1;
+      --fg: #0E0E10;
+      --muted: rgba(14, 14, 16, 0.56);
+      --muted-2: rgba(14, 14, 16, 0.62);
+      --faint: rgba(14, 14, 16, 0.40);
+      --hairline: rgba(14, 14, 16, 0.14);
+      --navbg: rgba(245, 244, 241, 0.78);
+    }
+
+    /* ===================== RESET / BASE ===================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--accent); color: #fff; }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+
+    /* Display / mono helpers */
+    .serif { font-family: 'Bodoni Moda', Georgia, serif; }
+    .mono  { font-family: 'Space Mono', 'SF Mono', ui-monospace, monospace; }
+
+    /* Section eyebrow */
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--muted); margin: 0 0 clamp(36px, 5vw, 64px);
+    }
+    .eyebrow b { color: var(--accent); font-weight: 400; }
+    section { border-top: 1px solid var(--hairline); padding: var(--section-pad) 0; scroll-margin-top: var(--nav-h); }
+
+    /* ===================== NAV ===================== */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--navbg);
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .nav__inner { height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav__brand {
+      font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; color: var(--fg);
+    }
+    .nav__links { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 34px); }
+    .nav__links a {
+      font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none; color: var(--muted); transition: color .25s var(--ease);
+    }
+    .nav__links a:hover { color: var(--accent); }
+    .nav__cta {
+      color: var(--fg) !important; border: 1px solid var(--hairline);
+      padding: 8px 14px; border-radius: 2px; transition: color .25s var(--ease), border-color .25s var(--ease);
+    }
+    .nav__cta:hover { border-color: var(--accent); color: var(--accent) !important; }
+
+    /* ===================== HERO ===================== */
+    .hero { padding: clamp(40px,6vw,72px) 0 clamp(48px,7vw,96px); scroll-margin-top: var(--nav-h); }
+    .hero__grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+      gap: clamp(28px, 4vw, 64px); align-items: stretch;
+    }
+    .hero__text { display: flex; flex-direction: column; justify-content: center; min-height: 74vh; }
+    .hero__eyebrow {
+      font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.26em;
+      text-transform: uppercase; color: var(--accent); margin: 0 0 clamp(20px, 3vw, 34px);
+    }
+    .hero__h1 {
+      font-family: 'Bodoni Moda', serif; font-weight: 900; margin: 0;
+      font-size: clamp(58px, 11.5vw, 156px); line-height: 0.86; letter-spacing: -0.02em;
+    }
+    .hero__thesis {
+      font-family: 'Bodoni Moda', serif; font-weight: 500; margin: clamp(28px,4vw,44px) 0 0;
+      font-size: clamp(21px, 2.7vw, 36px); line-height: 1.18; letter-spacing: -0.01em; max-width: 18em;
+    }
+    .hero__thesis em { font-style: italic; color: var(--accent); }
+    .hero__sub {
+      font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6; max-width: 34em;
+      margin: clamp(22px, 3vw, 30px) 0 0; color: var(--muted);
+    }
+    .hero__media { position: relative; min-height: 74vh; border: 1px solid var(--hairline); }
+    .hero__caption {
+      position: absolute; left: 14px; bottom: 14px; font-family: 'Space Mono', monospace;
+      font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+      mix-blend-mode: difference; pointer-events: none;
+    }
+
+    /* Image treatment — applied to real portraits when added */
+    .portrait { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.04) brightness(0.98); }
+    .img-fill { position: absolute; inset: 0; }
+    /* Placeholder shown until a real <img> is dropped in */
+    .img-ph {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--faint); text-align: center; padding: 16px;
+    }
+
+    /* ===================== ABOUT ===================== */
+    .about__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,300px),1fr)); gap: clamp(32px,5vw,80px); align-items: start; }
+    .about__media { position: relative; aspect-ratio: 4 / 5; border: 1px solid var(--hairline); min-width: 0; }
+    .about__h2 {
+      font-family: 'Bodoni Moda', serif; font-weight: 700; margin: 0 0 clamp(24px,3vw,36px);
+      font-size: clamp(30px, 4vw, 56px); line-height: 1.04; letter-spacing: -0.015em; max-width: 14em;
+    }
+    .about__bio { font-size: clamp(16px,1.5vw,19px); line-height: 1.66; margin: 0; color: var(--fg); max-width: 40em; }
+    .about__bio--long { font-size: clamp(15px,1.4vw,18px); line-height: 1.72; color: var(--muted-2); max-width: 42em; margin: clamp(20px,2.5vw,28px) 0 0; }
+    .about__bio--long[hidden] { display: none; }
+    .btn-ghost {
+      margin-top: clamp(24px,3vw,34px); background: transparent; border: 1px solid var(--hairline);
+      color: var(--fg); font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 0.18em;
+      text-transform: uppercase; padding: 11px 18px; border-radius: 2px; cursor: pointer;
+      transition: color .25s var(--ease), border-color .25s var(--ease);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: clamp(30px,4vw,42px); padding: 0; list-style: none; }
+    .chips li {
+      font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); border: 1px solid var(--hairline); padding: 7px 12px; border-radius: 999px;
+    }
+
+    /* ===================== THESIS ===================== */
+    .thesis__h2 {
+      font-family: 'Bodoni Moda', serif; font-weight: 700; margin: 0;
+      font-size: clamp(32px, 5.2vw, 80px); line-height: 1.02; letter-spacing: -0.02em; max-width: 16em;
+    }
+    .thesis__intro { font-size: clamp(16px,1.5vw,19px); line-height: 1.66; margin: clamp(26px,3.5vw,40px) 0 0; max-width: 42em; color: var(--muted-2); }
+    .pillars {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,240px),1fr));
+      margin-top: clamp(48px,7vw,96px); border-top: 1px solid var(--hairline);
+    }
+    .pillar { padding: clamp(28px,3vw,40px) clamp(20px,2vw,32px); border-right: 1px solid var(--hairline); }
+    .pillar:last-child { border-right: 0; }
+    .pillar__num { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 18px; }
+    .pillar__h3 { font-family: 'Bodoni Moda', serif; font-weight: 700; margin: 0 0 14px; font-size: clamp(26px,2.6vw,38px); line-height: 1.05; }
+    .pillar__p { font-size: 15.5px; line-height: 1.62; margin: 0; color: var(--muted-2); }
+    .payoff { margin-top: clamp(48px,7vw,90px); display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .payoff__label { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
+    .payoff__word { font-family: 'Bodoni Moda', serif; font-weight: 900; font-size: clamp(56px,15vw,210px); line-height: 0.9; letter-spacing: -0.02em; color: var(--accent); margin-top: 8px; }
+
+    /* ===================== WORK ===================== */
+    .work__row {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,260px),1fr));
+      gap: clamp(12px,2vw,40px); align-items: baseline; padding: clamp(26px,3.4vw,44px) 0; border-top: 1px solid var(--hairline);
+    }
+    .work__head { display: flex; align-items: baseline; gap: 16px; }
+    .work__num { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent); }
+    .work__org { font-family: 'Bodoni Moda', serif; font-weight: 700; margin: 0; font-size: clamp(26px,3.2vw,46px); line-height: 1.0; letter-spacing: -0.015em; }
+    .work__role { font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg); margin-bottom: 12px; }
+    .work__desc { font-size: 15.5px; line-height: 1.62; margin: 0; color: var(--muted-2); max-width: 38em; }
+    .work__years { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: var(--muted); text-align: right; white-space: nowrap; }
+    .work__end { border-top: 1px solid var(--hairline); }
+
+    /* ===================== RECOGNITION ===================== */
+    .awards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,240px),1fr)); gap: clamp(20px,2.4vw,36px); }
+    .award { border-top: 1px solid var(--hairline); padding-top: clamp(20px,2vw,28px); }
+    .award__tag { font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .award__name { font-family: 'Bodoni Moda', serif; font-weight: 700; margin: 0 0 8px; font-size: clamp(22px,2vw,30px); line-height: 1.08; }
+    .award__note { font-size: 14px; line-height: 1.5; margin: 0; color: var(--muted-2); }
+
+    /* ===================== FIELD NOTES ===================== */
+    .fn__head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: clamp(28px,4vw,44px); }
+    .fn__pill { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 6px 12px; border-radius: 999px; }
+    .fn__h2 { font-family: 'Bodoni Moda', serif; font-weight: 700; margin: 0; font-size: clamp(30px,4.6vw,68px); line-height: 1.03; letter-spacing: -0.02em; max-width: 15em; }
+    .fn__p { font-size: clamp(16px,1.5vw,19px); line-height: 1.66; margin: clamp(24px,3vw,34px) 0 clamp(36px,5vw,56px); max-width: 40em; color: var(--muted-2); }
+    .fn__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,280px),1fr)); gap: clamp(16px,2vw,28px); }
+    .fn__card { border: 1px solid var(--hairline); border-radius: 2px; padding: clamp(22px,2.4vw,32px); min-height: 160px; display: flex; flex-direction: column; justify-content: space-between; }
+    .fn__card-label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+    .fn__card-state { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: clamp(20px,2vw,28px); color: var(--faint); }
+
+    /* ===================== CONNECT ===================== */
+    .connect { padding: clamp(80px,13vh,170px) 0; }
+    .connect__h2 { font-family: 'Bodoni Moda', serif; font-weight: 700; margin: 0; font-size: clamp(40px,8vw,128px); line-height: 0.94; letter-spacing: -0.025em; max-width: 11em; }
+    .connect__actions { display: flex; flex-wrap: wrap; gap: clamp(14px,2vw,20px); margin-top: clamp(36px,5vw,56px); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 12px; text-decoration: none;
+      font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 16px 24px; border-radius: 2px;
+    }
+    .btn--primary { color: var(--bg); background: var(--accent); transition: opacity .25s var(--ease); }
+    .btn--primary:hover { opacity: 0.88; }
+    .btn--ghost { color: var(--fg); border: 1px solid var(--hairline); transition: color .25s var(--ease), border-color .25s var(--ease); }
+    .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .connect__soon { font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-top: clamp(28px,4vw,40px); }
+
+    /* ===================== FOOTER ===================== */
+    .footer { border-top: 1px solid var(--hairline); padding: clamp(40px,6vw,64px) 0; }
+    .footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%,220px),1fr)); gap: 24px; align-items: end; }
+    .footer__brand { font-family: 'Bodoni Moda', serif; font-weight: 800; font-size: 28px; letter-spacing: -0.01em; }
+    .footer__loc { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+    .footer__links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer__links a { font-family: 'Space Mono', monospace; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .25s var(--ease); }
+    .footer__links a:hover { color: var(--accent); }
+    .footer__legal { text-align: right; font-family: 'Space Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; color: var(--faint); line-height: 1.7; }
+
+    /* ===================== REVEAL ON SCROLL ===================== */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__brand" href="#top">Danielle Regis</a>
+      <div class="nav__links">
+        <a href="#about">About</a>
+        <a href="#thesis">Thesis</a>
+        <a href="#work">Work</a>
+        <a href="#recognition">Recognition</a>
+        <a class="nav__cta" href="#connect">Connect</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero wrap" id="top">
+    <div class="hero__grid">
+      <div class="hero__text">
+        <p class="hero__eyebrow">Deployment Strategist, Palantir &nbsp;/&nbsp; Formerly CIA</p>
+        <h1 class="hero__h1">Danielle<br>Regis</h1>
+        <p class="hero__thesis">Technology doesn't win because it's good. It wins when people and culture are ready to <em>trust it.</em></p>
+        <p class="hero__sub">I work at the intersection of technology, people, and culture, making AI actually get adopted.</p>
+      </div>
+      <div class="hero__media">
+        <!-- Replace the placeholder div with: <img class="portrait img-fill" src="images/hero.jpg" alt="Portrait of Danielle Regis"> -->
+        <div class="img-ph">Hero portrait</div>
+        <span class="hero__caption">Fig. 01 — Portrait</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about">
+      <div class="wrap">
+        <p class="eyebrow reveal"><b>01</b> &nbsp;/&nbsp; About</p>
+        <div class="about__grid">
+          <div class="about__media reveal">
+            <!-- Replace with: <img class="portrait img-fill" src="images/about.jpg" alt="Danielle Regis"> -->
+            <div class="img-ph">Portrait</div>
+          </div>
+          <div class="reveal">
+            <h2 class="about__h2">A rare operator at the intersection of AI product, strategy, and execution.</h2>
+            <p class="about__bio">Danielle Regis is a Deployment Strategist at Palantir and was the CIA's first dedicated AI policy officer. She works at the intersection of technology, people, and culture, where AI actually gets adopted. Cornell engineer, Harvard MBA, and a 2026 "100 Women in AI" honoree.</p>
+            <p class="about__bio about__bio--long" id="long-bio" hidden>She began as an embedded software engineer at the CIA, went on to lead the agency's venture partnerships and commercial technology adoption strategy, and helped shape national AI policy alongside the White House. Today, pairing Cornell electrical-and-computer-engineering depth with a Harvard MBA and founder experience, she leads AI implementation where most enterprise efforts stall: the messy ground between vision and value. She co-founded LINGO, a STEM education company that reached more than 10,000 students, and is an International Strategy Forum Global Fellow.</p>
+            <button class="btn-ghost" id="bio-toggle" aria-expanded="false" aria-controls="long-bio">Read full bio +</button>
+            <ul class="chips">
+              <li>New Yorker</li>
+              <li>Based in Washington, DC</li>
+              <li>Black woman in AI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== THESIS ===================== -->
+    <section id="thesis">
+      <div class="wrap">
+        <p class="eyebrow reveal"><b>02</b> &nbsp;/&nbsp; The Thesis</p>
+        <h2 class="thesis__h2 reveal">Anyone can comment on AI. I'm the person who tells you whether it will actually land.</h2>
+        <p class="thesis__intro reveal">Why does technology get adopted, or not? The answer is rarely purely technical. It is about trust, cultural readiness, and whether institutions can absorb it. I have lived all three layers most people only theorize.</p>
+        <div class="pillars">
+          <div class="pillar reveal">
+            <div class="pillar__num">01</div>
+            <h3 class="pillar__h3">Technology</h3>
+            <p class="pillar__p">Cornell ECE, embedded-software roots, hands-on LLM deployment. I understand how the thing actually works.</p>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar__num">02</div>
+            <h3 class="pillar__h3">People</h3>
+            <p class="pillar__p">First dedicated AI policy officer at the CIA, advisor to senior government leadership. I understand who decides to trust technology, and why.</p>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar__num">03</div>
+            <h3 class="pillar__h3">Culture</h3>
+            <p class="pillar__p">Adoption inside the hardest, highest-stakes environments that exist. I treat culture as the real bottleneck, not an afterthought.</p>
+          </div>
+        </div>
+        <div class="payoff reveal">
+          <div class="payoff__label">All roads resolve to</div>
+          <div class="payoff__word">Adoption</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORK ===================== -->
+    <section id="work">
+      <div class="wrap">
+        <p class="eyebrow reveal"><b>03</b> &nbsp;/&nbsp; Work &amp; Experience</p>
+
+        <div class="work__row reveal">
+          <div class="work__head">
+            <span class="work__num">01</span>
+            <h3 class="work__org">Palantir Technologies</h3>
+          </div>
+          <div>
+            <div class="work__role">Deployment Strategist</div>
+            <p class="work__desc">Leading AI implementation where most enterprise efforts stall: the messy ground between vision and value.</p>
+          </div>
+          <div class="work__years">2024 — Present</div>
+        </div>
+
+        <div class="work__row reveal">
+          <div class="work__head">
+            <span class="work__num">02</span>
+            <h3 class="work__org">Central Intelligence Agency</h3>
+          </div>
+          <div>
+            <div class="work__role">First dedicated AI policy officer · Startup &amp; Investor Partnerships</div>
+            <p class="work__desc">Shaped national AI policy alongside the White House, led venture partnerships and commercial technology adoption strategy, and built from an embedded-software foundation.</p>
+          </div>
+          <div class="work__years">Decade-long</div>
+        </div>
+
+        <div class="work__row reveal">
+          <div class="work__head">
+            <span class="work__num">03</span>
+            <h3 class="work__org">LINGO (STEMLingo)</h3>
+          </div>
+          <div>
+            <div class="work__role">Co-Founder</div>
+            <p class="work__desc">STEM education company reaching more than 10,000 students, democratizing access to technology.</p>
+          </div>
+          <div class="work__years">Founder</div>
+        </div>
+
+        <div class="work__end"></div>
+      </div>
+    </section>
+
+    <!-- ===================== RECOGNITION ===================== -->
+    <section id="recognition">
+      <div class="wrap">
+        <p class="eyebrow reveal"><b>04</b> &nbsp;/&nbsp; Recognition</p>
+        <div class="awards">
+          <div class="award reveal">
+            <div class="award__tag">2026</div>
+            <h3 class="award__name">100 Women in AI</h3>
+            <p class="award__note">Honoree</p>
+          </div>
+          <div class="award reveal">
+            <div class="award__tag">2025 · Fellow</div>
+            <h3 class="award__name">International Strategy Forum</h3>
+            <p class="award__note">Eric Schmidt global program</p>
+          </div>
+          <div class="award reveal">
+            <div class="award__tag">MBA</div>
+            <h3 class="award__name">Harvard Business School</h3>
+            <p class="award__note">Master of Business Administration</p>
+          </div>
+          <div class="award reveal">
+            <div class="award__tag">MEng · BS</div>
+            <h3 class="award__name">Cornell University</h3>
+            <p class="award__note">Electrical &amp; Computer Engineering</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FIELD NOTES (placeholder) ===================== -->
+    <section id="fieldnotes">
+      <div class="wrap">
+        <div class="fn__head reveal">
+          <p class="eyebrow" style="margin:0"><b>05</b> &nbsp;/&nbsp; Field Notes</p>
+          <span class="fn__pill">Coming soon</span>
+        </div>
+        <h2 class="fn__h2 reveal">Field notes from inside the room, not thought-leadership wallpaper.</h2>
+        <p class="fn__p reveal">Essays and a newsletter on why technology actually gets adopted, written from the messy ground between vision and value. Arriving soon.</p>
+        <div class="fn__cards reveal">
+          <div class="fn__card">
+            <div class="fn__card-label">Essay 01</div>
+            <div class="fn__card-state">In preparation</div>
+          </div>
+          <div class="fn__card">
+            <div class="fn__card-label">Essay 02</div>
+            <div class="fn__card-state">In preparation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONNECT ===================== -->
+    <section id="connect" class="connect">
+      <div class="wrap">
+        <p class="eyebrow reveal"><b>06</b> &nbsp;/&nbsp; Connect</p>
+        <h2 class="connect__h2 reveal">Let's talk about what actually gets adopted.</h2>
+        <div class="connect__actions reveal">
+          <!-- TODO: confirm real LinkedIn URL -->
+          <a class="btn btn--primary" href="https://www.linkedin.com/in/danielleregis" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">&#8599;</span></a>
+          <!-- TODO: replace with real professional email -->
+          <a class="btn btn--ghost" href="mailto:hello@danielleregis.com">hello@danielleregis.com</a>
+        </div>
+        <!-- Future: drop a newsletter signup form here -->
+        <p class="connect__soon reveal">Newsletter signup coming soon</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <div class="footer__brand">Danielle Regis</div>
+        <div class="footer__loc">New York &#8594; Washington, DC</div>
+      </div>
+      <div class="footer__links">
+        <a href="https://www.linkedin.com/in/danielleregis" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:hello@danielleregis.com">Email</a>
+      </div>
+      <div class="footer__legal">&copy; 2026 Danielle Regis<br>Views are my own and do not represent any employer.</div>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Bio expand/collapse ----
+    (function () {
+      var btn = document.getElementById('bio-toggle');
+      var bio = document.getElementById('long-bio');
+      if (btn && bio) {
+        btn.addEventListener('click', function () {
+          var open = bio.hasAttribute('hidden');
+          if (open) { bio.removeAttribute('hidden'); } else { bio.setAttribute('hidden', ''); }
+          btn.textContent = open ? 'Show less \u2212' : 'Read full bio +';
+          btn.setAttribute('aria-expanded', String(open));
+          if (open && !prefersReduced) { requestAnimationFrame(function(){ revealOne(bio); }); }
+        });
+      }
+    })();
+
+    // ---- Reveal on scroll ----
+    var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function revealOne(el) { el.classList.add('is-visible'); }
+    (function () {
+      var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if (prefersReduced || !('IntersectionObserver' in window)) {
+        els.forEach(revealOne);
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { revealOne(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
