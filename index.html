@@ -79,6 +79,14 @@
     }
     .link:hover .link__ext { color: var(--accent); }
 
+    /* Inline text link inside prose — subtle underline, accent on hover */
+    .tlink {
+      color: inherit; text-decoration: underline; text-decoration-color: var(--hairline);
+      text-decoration-thickness: 1px; text-underline-offset: 3px;
+      transition: color .25s var(--ease), text-decoration-color .25s var(--ease);
+    }
+    .tlink:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
     .wrap { max-width: var(--max-w); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 
     /* Display / mono helpers */
@@ -309,8 +317,8 @@
           </div>
           <div class="reveal">
             <h2 class="about__h2">A rare operator at the intersection of AI product, strategy, and execution.</h2>
-            <p class="about__bio">Danielle Regis is a Deployment Strategist at Palantir and was the CIA's first dedicated AI policy officer. She works at the intersection of technology, people, and culture, where AI actually gets adopted. Cornell engineer, Harvard MBA, and a 2026 "100 Women in AI" honoree.</p>
-            <p class="about__bio about__bio--long" id="long-bio" hidden>She began as an embedded software engineer at the CIA, went on to lead the agency's venture partnerships and commercial technology adoption strategy, and helped shape national AI policy alongside the White House. Today, pairing Cornell electrical-and-computer-engineering depth with a Harvard MBA and founder experience, she leads AI implementation where most enterprise efforts stall: the messy ground between vision and value. She co-founded LINGO, a STEM education company that reached more than 10,000 students, and is an International Strategy Forum Global Fellow.</p>
+            <p class="about__bio">Danielle Regis is a Deployment Strategist at Palantir and was the CIA's first dedicated AI policy officer. She works at the intersection of technology, people, and culture, where AI actually gets adopted. Cornell engineer, Harvard MBA, and a 2026 "<a class="tlink" href="https://www.100womeninai.com/danielle-regis" target="_blank" rel="noopener">100 Women in AI</a>" honoree.</p>
+            <p class="about__bio about__bio--long" id="long-bio" hidden>She began as an embedded software engineer at the CIA, went on to lead the agency's venture partnerships and commercial technology adoption strategy, and helped shape national AI policy alongside the White House. Today, pairing Cornell electrical-and-computer-engineering depth with a Harvard MBA and founder experience, she leads AI implementation where most enterprise efforts stall: the messy ground between vision and value. She co-founded <a class="tlink" href="https://stemlingo.com/" target="_blank" rel="noopener">LINGO</a>, a STEM education company that reached more than 10,000 students, and is an <a class="tlink" href="https://internationalstrategyforum.io/fellow/danielle-regis/" target="_blank" rel="noopener">International Strategy Forum</a> Global Fellow.</p>
             <button class="btn-ghost" id="bio-toggle" aria-expanded="false" aria-controls="long-bio">Read full bio +</button>
             <ul class="chips">
               <li>New Yorker</li>
