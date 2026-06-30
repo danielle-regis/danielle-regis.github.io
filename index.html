@@ -129,8 +129,12 @@
     /* ===================== HERO ===================== */
     .hero { padding-top: clamp(40px,6vw,72px); padding-bottom: clamp(48px,7vw,96px); scroll-margin-top: var(--nav-h); }
     .hero__grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+      display: grid; grid-template-columns: 1fr;
       gap: clamp(28px, 4vw, 64px); align-items: stretch;
+    }
+    /* Two-column layout on wider screens — text gets more room than the photo */
+    @media (min-width: 860px) {
+      .hero__grid { grid-template-columns: 1.25fr 0.85fr; }
     }
     .hero__text { display: flex; flex-direction: column; justify-content: center; min-height: 74vh; container-type: inline-size; }
     .hero__eyebrow {
@@ -139,8 +143,8 @@
     }
     .hero__h1 {
       font-family: 'Bodoni Moda', serif; font-weight: 900; margin: 0;
-      font-size: clamp(44px, 8.5vw, 118px);   /* fallback if container queries unsupported */
-      font-size: clamp(44px, 23cqi, 150px);   /* scales to the text column, never overflows it */
+      font-size: clamp(44px, 9vw, 130px);     /* fallback if container queries unsupported */
+      font-size: clamp(44px, 24cqi, 160px);   /* scales to the text column, never overflows it */
       line-height: 0.86; letter-spacing: -0.02em;
     }
     .hero__thesis {
